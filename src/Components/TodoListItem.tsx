@@ -20,7 +20,13 @@ const TodoListItem = ({ id, completed, text }: TodoListItemPropsInterface) => {
     doneTodo({ id, completed: !completed });
   };
   return (
-    <View style={styles.listItem}>
+    <View
+      style={
+        completed
+          ? [styles.listItem, styles.listItemCompleted]
+          : styles.listItem
+      }
+    >
       <View
         style={
           completed
@@ -57,6 +63,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#d4d4d4",
     marginBottom: 8,
+  },
+  listItemCompleted: {
+    backgroundColor: "#85d44e",
   },
   listItemText: {
     width: "90%",
