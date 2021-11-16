@@ -5,19 +5,22 @@ import { TodoHeader } from "./src/Components/TodoHeader";
 import TodoAddField from "./src/Components/TodoAddField";
 import TodoList from "./src/Components/TodoList";
 import { Provider } from "react-redux";
-import { store } from "./src/store";
+import { persistor, store } from "./src/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 export default function App() {
   return (
     <Provider store={store}>
-      <ScrollView>
-        <View style={styles.container}>
-          <TodoHeader />
-          <TodoAddField />
-          <TodoList />
-          <StatusBar style="auto" />
-        </View>
-      </ScrollView>
+      <PersistGate loading={null} persistor={persistor}>
+        <ScrollView>
+          <View style={styles.container}>
+            <TodoHeader />
+            <TodoAddField />
+            <TodoList />
+            <StatusBar style="auto" />
+          </View>
+        </ScrollView>
+      </PersistGate>
     </Provider>
   );
 }
